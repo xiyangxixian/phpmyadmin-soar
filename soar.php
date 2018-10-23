@@ -13,6 +13,9 @@ class Soar {
     $this->cmd .= ' ' . $this->buildConfig();
   }
 
+  /**
+   * @return string cmd
+   */
   private function getCmd() {
     defined('PHP_OS') or define('PHP_OS', 'Linux');
     if (DIRECTORY_SEPARATOR == '\\') {
@@ -23,6 +26,10 @@ class Soar {
     return __DIR__ . '/bin/' . $cmd;
   }
 
+  /**
+   * 设置soar 配置
+   * @param array $config
+   */
   public function config($config) {
     $this->config = array_merge($this->config, $config);
   }
@@ -35,8 +42,11 @@ class Soar {
     return implode(' ', $options);
   }
 
+  /**
+   * return array
+   */
   public function analysis($sql) {
-    $sql = trim(preg_replace('/^explain/i', '', $sql));
+    $sql = trim(preg_replace('/^explain/i', '', trim($sql)));
     $f = proc_open($this->cmd, [
       ['pipe', 'r'], ['pipe', 'w'], ['pipe', 'w']
     ], $pipes);
@@ -48,6 +58,9 @@ class Soar {
   }
 }
 
+/**
+ * format array to html fro php myadmin
+ */
 class SoarHtml {
 
   private $r;
@@ -63,6 +76,9 @@ class SoarHtml {
     $this->parseResult();
   }
 
+  /**
+   * 解析结, 设置粉碎和 explain解读, 并按照level排序
+   */
   private function parseResult() {
     $total = 100;
     $explainItem = [];
@@ -85,6 +101,9 @@ class SoarHtml {
     $this->config['analysis'] = $analysis;
   }
 
+  /**
+   * 分数html
+   */
   public function asNumHtml() {
     $margin = '20px 0px 00px 0px';
     $verArr = explode('.', PMA_VERSION);
@@ -109,6 +128,9 @@ class SoarHtml {
     return "<h3 style=\"margin:{$margin}\">评分：{$this->config['num']}分</h3>";
   }
 
+  /**
+   * expalin html
+   */
   public function asExplainHtml() {
     if ($this->config['explain']) {
       $html = $this->config['explain']['Case'];
@@ -122,6 +144,9 @@ class SoarHtml {
     return '';
   }
 
+  /**
+   * sql 建议 html
+   */
   public function asItemHtml() {
     $html = '';
     if ($this->config['analysis']) {
@@ -145,6 +170,9 @@ class SoarHtml {
   }
 }
 
+/**
+ * 检测是否有phpmyadmin 环境
+ */
 if (defined('PMA_VERSION')) {
   $db = $GLOBALS['db'];
   global $cfg;
@@ -152,6 +180,7 @@ if (defined('PMA_VERSION')) {
   $user = $cfg['Server']['user'];
   $pwd = $cfg['Server']['password'];
   $port = $cfg['Server']['port'] ?: '3306';
+  //如果密码含特殊字符, 则读取配置文件
   if (preg_match('/[@:\/]/', $pwd)) {
     $file = __DIR__. '/bin/soar.yaml';
     $content = "test-dsn:\n  addr: '{$host}:{$port}'\n  schema: '{$db}'\n  user: '{$user}'\n  password: '{$pwd}'\n  disable: false";
@@ -163,6 +192,9 @@ if (defined('PMA_VERSION')) {
   }
   $GLOBALS['soar'] = $soar;
 
+  /**
+   * 格式化sql
+   */
   function get_analyzed_sql($sqlParser) {
     $sql = '';
     foreach ($sqlParser->tokens as $val) {
@@ -171,3 +203,8 @@ if (defined('PMA_VERSION')) {
     return $sql;
   }
 }
+
+#############  demo #####################
+//$soar = new Soar(['test-dsn' => 'xxx']);
+//$r = $soar->analysis($sql);
+//print_r($r);
