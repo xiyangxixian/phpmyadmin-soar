@@ -4416,9 +4416,13 @@ class DisplayResults
             $table_html .= "<br>";
         }
         
-        $obj = include_once dirname(__DIR__) . '/soar/soar.php';
-        if (!is_null($obj)) {
-          $table_html .= $obj->asNumHtml();
+        
+        include_once dirname(__DIR__) . '/soar/soar.php';
+        $soarHtml = null;
+        if ($analyzed_sql_results['is_explain']) {
+          $soarSql = get_analyzed_sql($analyzed_sql_results['parser']->list);
+          $soarHtml = new \SoarHtml(array_values($GLOBALS['soar']->analysis($soarSql))[0]);
+          $table_html .= $soarHtml->asNumHtml();
         }
         
         $table_html .= $this->_getTableHeaders(
@@ -4445,9 +4449,9 @@ class DisplayResults
 
         $table_html .= '</tbody>' . "\n" . '</table>';
         
-        if (!is_null($obj)) {
-          $table_html .= $obj->asExplainHtml();
-          $table_html .= $obj->asItemHtml();
+        if (!is_null($soarHtml)) {
+          $table_html .= $soarHtml->asExplainHtml();
+          $table_html .= $soarHtml->asItemHtml();
         }
         
 
