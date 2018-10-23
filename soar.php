@@ -42,8 +42,6 @@ class Soar {
     ], $pipes);
     fwrite($pipes[0], $sql);
     fclose($pipes[0]);
-    
-    if (DIRECTORY_SEPARATOR == '\\') fgets($pipes[1]);
     $data = stream_get_contents($pipes[1]);
     fclose($pipes[1]);
     return $this->config['report-type'] == 'json' ? (json_decode($data, true) ?: [[]]) : $data;
@@ -173,8 +171,3 @@ if (defined('PMA_VERSION')) {
     return $sql;
   }
 }
-
-
-$soar = new Soar(['test-dsn' => 'root:@127.0.0.1/xcx_set']);
-$r = $soar->analysis("select * from `sys_config`");
-var_dump($r);
