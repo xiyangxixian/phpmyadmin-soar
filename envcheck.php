@@ -19,7 +19,7 @@ $verArr = explode('.', $config['version']);
 $verDir = implode('.', [$verArr[0], $verArr[1], 'x']);
 $curVer = $verArr[0] * 100 + $verArr[1];
 
-if (!file_exists($path . '/' . 'config.inc.php') || !file_exists($path . '/' . 'config.sample.inc.php'))
+if (!file_exists($path . '/' . 'config.inc.php') && !file_exists($path . '/' . 'config.sample.inc.php'))
     die('invalid phpmyadmin path');
 if (!file_exists(__DIR__ . '/phpmyadmin/' . $verDir)) {
   die('invalid phpmyadmin version, allow version:' . PHP_EOL . implode(PHP_EOL, array_filter(scandir(__DIR__ . '/phpmyadmin'), function($item) {
