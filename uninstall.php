@@ -1,10 +1,7 @@
 <?php
 include __DIR__ . '/envcheck.php';
 
-if (file_exists($path . '/soar')) die ('soar has been installed');
-
-$res = copyFile(__DIR__, $path . '/soar');
-if (!$res) die ('copy soar to ' . $path . '/soar failed');
+if (!file_exists($path . '/soar')) die ('soar has not installed');
 
 $file = array_values(array_filter(scandir($path . '/soar/phpmyadmin/' . $verDir), function($item){
   return !preg_match('/^\./', $item) && !preg_match('/\.bak$/', $item);
@@ -16,8 +13,8 @@ if (intval($curVer) < 408) {
 } else {
   $oldFile = $path . '/libraries/classes/Display/' . $file;
 }
+if (!file_exists($newFile . '.bak')) die('uninstall soar failed, old file: ' . $file . ', is missing');
+copyFile($newFile . '.bak', $oldFile);
+rmFile("{$path}/soar");
 
-copyFile($oldFile, $newFile . '.bak');
-copyFile($newFile, $oldFile);
-echo 'soar install success' . PHP_EOL;
-
+echo 'soar uninstall success' . PHP_EOL;

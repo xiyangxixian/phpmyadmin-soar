@@ -204,7 +204,7 @@ if (defined('PMA_VERSION')) {
   }
 }
 
-#############  demo #####################
+##################  demo  #####################
 //$soar = new Soar(['test-dsn' => 'xxx']);
 //$r = $soar->analysis($sql);
 //print_r($r);
