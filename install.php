@@ -19,4 +19,12 @@ if (intval($curVer) < 408) {
 
 copyFile($oldFile, $newFile . '.bak');
 copyFile($newFile, $oldFile);
+
+$cmd = "chmod -R a+x {$path}/soar/bin";
+$f = proc_open($cmd, [
+  ['pipe', 'r'], ['pipe', 'w'], ['pipe', 'w']
+], $pipes);
+fclose($pipes[0]);
+fclose($pipes[1]);
+fclose($pipes[2]);
 echo 'soar install success' . PHP_EOL;
