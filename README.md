@@ -25,7 +25,7 @@ php uninstall.php ~/phpmyadmin --version=4.8.3
 
 ## 使用
 ```php
-phpmyadmin中，编辑sql的时候，在前面加上 explain 关键词将会出现 soar 分析信息
+phpmyadmin 中，编辑 sql 的时候，在前面加上 explain 关键词将会自动出现 soar 分析信息
 ```
 
 ## 感谢
