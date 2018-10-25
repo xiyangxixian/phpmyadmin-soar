@@ -3,6 +3,10 @@ phpmyadmin-soar 是基于小米 soar的phpmyadmin插件, 方便在phpmyadmin上�
 
 ![soar](https://raw.githubusercontent.com/xiyangxixian/phpmyadmin-soar/master/doc/img/example.png)
 
+## 环境需求
+* php >= 5.4
+* phpmyadmin >= 4.0
+
 ## 安装
 ```php
 php install.php phpmyadmin路径 --version=phpmyadmin版本
