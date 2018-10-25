@@ -3,7 +3,8 @@ class Soar {
 
   private $config = [
     'report-type' => 'json',
-    'allow-online-as-test' => 'true'
+    'allow-online-as-test' => 'true',
+    'sampling' => 'false',
   ];
   private $cmd = '';
 
