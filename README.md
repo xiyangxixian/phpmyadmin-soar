@@ -6,6 +6,7 @@ phpmyadmin-soar 是基于小米 soar的phpmyadmin插件, 方便在phpmyadmin上�
 ## 环境需求
 * php >= 5.4
 * phpmyadmin >= 4.0
+* php.ini 中未禁用 proc_open 函数
 
 ## 安装
 ```php
