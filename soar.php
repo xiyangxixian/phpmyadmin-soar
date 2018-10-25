@@ -105,7 +105,7 @@ class SoarHtml {
    * 分数html
    */
   public function asNumHtml() {
-    $margin = '20px 0px 00px 0px';
+    $margin = '20px 0px 0px 0px';
     $verArr = explode('.', PMA_VERSION);
     $ver = "{$verArr[0]}.{$verArr[1]}";
     switch ($ver) {
