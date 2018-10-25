@@ -59,7 +59,7 @@ class Soar {
 }
 
 /**
- * format array to html fro php myadmin
+ * format array to html for phpmyadmin
  */
 class SoarHtml {
 
@@ -77,7 +77,7 @@ class SoarHtml {
   }
 
   /**
-   * 解析结, 设置粉碎和 explain解读, 并按照level排序
+   * 解析结, 设置分数和 explain解读, 并按照level排序
    */
   private function parseResult() {
     $total = 100;
@@ -204,7 +204,7 @@ if (defined('PMA_VERSION')) {
   }
 }
 
-##################  demo  #####################
+##################  demo  ###################
 //$soar = new Soar(['test-dsn' => 'xxx']);
 //$r = $soar->analysis($sql);
 //print_r($r);
