@@ -20,7 +20,7 @@ if (intval($curVer) < 408) {
 copyFile($oldFile, $newFile . '.bak');
 copyFile($newFile, $oldFile);
 
-$cmd = "chmod -R a+x {$path}/soar/bin";
+$cmd = "chmod -R 777 {$path}/soar/bin";
 $f = proc_open($cmd, [
   ['pipe', 'r'], ['pipe', 'w'], ['pipe', 'w']
 ], $pipes);
