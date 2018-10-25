@@ -11,15 +11,20 @@ phpmyadmin-soar 是基于小米 soar的phpmyadmin插件, 方便在phpmyadmin上�
 ## 安装
 ```php
 php install.php phpmyadmin路径 --version=phpmyadmin版本
-chmod -R a+x phpmyadmin路径/soar/bin (Linux环境下面需要)
+chmod -R a+x phpmyadmin路径/soar/bin (Linux 环境下面需要)
 php install.php ~/phpmyadmin --version=4.8.3
-chmod -R a+x ~/phpmyadmin/soar/bin (Linux环境下面需要)
+chmod -R a+x ~/phpmyadmin/soar/bin (Linux 环境下面需要)
 ```
 
 ## 卸载
 ```php
 php uninstall.php phpmyadmin路径 --version=phpmyadmin版本
 php uninstall.php ~/phpmyadmin --version=4.8.3
+```
+
+## 使用
+```php
+phpmyadmin中，编辑sql的时候，在前面加上 explain 关键词将会出现 soar 分析信息
 ```
 
 ## 感谢
