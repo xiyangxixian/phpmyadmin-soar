@@ -1,7 +1,7 @@
 <?php
 include __DIR__ . '/envcheck.php';
 
-if (!file_exists($path . '/soar')) die ('soar has not installed');
+if (!file_exists($path . '/soar')) die ('soar has not been installed');
 
 $file = array_values(array_filter(scandir($path . '/soar/phpmyadmin/' . $verDir), function($item){
   return !preg_match('/^\./', $item) && !preg_match('/\.bak$/', $item);

@@ -20,4 +20,3 @@ if (intval($curVer) < 408) {
 copyFile($oldFile, $newFile . '.bak');
 copyFile($newFile, $oldFile);
 echo 'soar install success' . PHP_EOL;
-

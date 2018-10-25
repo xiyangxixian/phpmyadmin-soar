@@ -13,7 +13,7 @@ foreach ($argv as $val) {
     $config[$m[1]] = $m[2];
   }
 }
-if (!isset($config['version'])) die('can not enter phpmyadmin version');
+if (!isset($config['version'])) die('can not found phpmyadmin version');
 
 $verArr = explode('.', $config['version']);
 $verDir = implode('.', [$verArr[0], $verArr[1], 'x']);
